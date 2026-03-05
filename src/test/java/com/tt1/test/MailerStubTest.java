@@ -8,8 +8,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class MailerStub {
-
+class MailerStubTest {
+	private MailerStub ms;
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 	}
@@ -20,6 +20,7 @@ class MailerStub {
 
 	@BeforeEach
 	void setUp() throws Exception {
+		ms=new MailerStub();
 	}
 
 	@AfterEach
@@ -27,8 +28,16 @@ class MailerStub {
 	}
 
 	@Test
-	void test() {
-		fail("Not yet implemented");
+	void testenviarCorreo() {
+		//Arrange
+		String destino="destino";
+		String mensaje="Hola hola";
+		//act
+		Boolean bool=ms.enviarCorreo(destino, mensaje);
+		
+		//Assert
+		assertEquals(true, bool);
+		
 	}
 
 }
