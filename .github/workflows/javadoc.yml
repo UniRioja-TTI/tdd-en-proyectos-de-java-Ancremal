@@ -3,7 +3,7 @@ name: Generar y Publicar Javadoc
 on:
   push:
     branches:
-      - [cite_start]stable
+      - stable
 
 permissions:
   contents: write
