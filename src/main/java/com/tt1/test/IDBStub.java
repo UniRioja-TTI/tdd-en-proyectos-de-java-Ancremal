@@ -1,7 +1,11 @@
 package com.tt1.test;
 
 import java.util.*;
-
+/**
+ * 
+ * Interfaz que implementan las clases DBStub y DBStubFAKE
+ *
+ */
 public interface IDBStub {
 
 	  void guardarTarea(ToDo tarea);

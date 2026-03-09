@@ -2,7 +2,10 @@ package com.tt1.test;
 
 import java.time.LocalDate;
 import java.util.*;
-
+/**
+ * Clase que representa la lógica de negocio y la interfaz de operaciones para el usuario.
+ * Es la clase que se relaciona con Repositorio, el sistema de envío de emails y las tareas.
+ */
 public class Servicio {
 	private IRepositorio repo;
 	private IMailerStub mailer;
@@ -11,7 +14,11 @@ public class Servicio {
 		this.repo=repo;
 		this.mailer=mailer;
 	}
-	
+	/**
+	 * metodo para crear una tarea nueva que se almacena en la base de datos
+	 * @param nombre El nombre de la tarea a añadir
+	 * @param fecha Objeto {@link java.time.LocalDate} que indica el plazo de la tarea.
+	 */
 	public void crearTarea(String nombre, java.time.LocalDate fecha) { 
 		comprobarAlertas();
 		ToDo nueva= new ToDo();
@@ -20,7 +27,10 @@ public class Servicio {
 		nueva.setCompletado(false);
 		repo.insertarTarea(nueva);
 	}
-	
+	 /**
+	  * metodo para añadir un email a la base de datos
+	  * @param email el email a añadir
+	  */
     public void agregarEmail(String email) { 
 		comprobarAlertas();
 		repo.insertarEmail(email);
@@ -29,6 +39,10 @@ public class Servicio {
     public void finalizarTarea(String nombre) { 
     	
     }
+    /**
+     * Metodo para obtener las tareas que no estan completadas. 
+     * @return la lista de tareas, {@link ToDo} que están sin completar
+     */
     public List<ToDo> consultarPendientes() { 
     	comprobarAlertas();
     	List<ToDo> pendientes=new ArrayList<>();
@@ -39,7 +53,10 @@ public class Servicio {
     	}
     	return pendientes;
     }
-    
+    /**
+     * Método para enviar correo a los emails asociados a tareas que no estén completadas y que haya 
+     * vencido su fecha limite.
+     */
     private void comprobarAlertas() { 
     	for (ToDo t : repo.getDb().obtenerTareas()) {
     		if (!t.getCompletado() && t.getFechaLimite().isBefore(LocalDate.now())){
