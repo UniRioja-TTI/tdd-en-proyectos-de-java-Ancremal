@@ -24,8 +24,7 @@ jobs:
 
       - name: Generar Javadoc
         run: |
-          # Usamos el comando que probamos antes
-          javadoc -d docs -sourcepath src/main/java -subpackages com.tt1.test 
+           javadoc -d docs -sourcepath src/main/java -subpackages com.tt1.test 
           
       - name: Desplegar en GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4
